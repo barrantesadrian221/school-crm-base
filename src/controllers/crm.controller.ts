@@ -55,9 +55,24 @@ export class CRMController {
      * Devuelve true si hay conflicto (el profesor está duplicado) o false si está libre.
      */
     public async comprobarConflictoProfesor(profesorId: string, dia: string, franja: string): Promise<boolean> {
-        // TODO: Recuperar los horarios y utilizar métodos de array (.some, .filter, etc.) 
-        // para buscar coincidencias exactas.
-        throw new Error('Método no implementado');
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        //TODO:Recupear los horarios y usar metodos de array(.filter,.some)
+        const horarios = this.horariosStorage.getAll();
+
+        const hayConflicto = horarios.some((registroHorario) => {
+            if (
+                registroHorario.profesorId === profesorId && 
+                registroHorario.dia === dia && 
+                registroHorario.franja === franja
+            ) {
+                return true;
+            }
+            else {
+            return false;
+            }
+        });
+
+        return hayConflicto;
     }
 
     /**
