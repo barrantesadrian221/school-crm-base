@@ -1,4 +1,5 @@
 /**
+ * storage.services.ts
  * Servicio genérico para gestionar la persistencia en LocalStorage.
  * Debe ser implementado por el alumno.
  */

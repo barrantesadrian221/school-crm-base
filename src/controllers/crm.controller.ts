@@ -14,7 +14,7 @@ export class CRMController {
     public async registrarAsistencia(alumnoId: string, profesorId: string, franja: FranjaHoraria, estado: EstadoAsistencia): Promise<boolean> {
         // Simulación de retraso de red
         await new Promise((resolve) => setTimeout(resolve, 300));
-
+        //Constante
         const nuevaAsistencia: Asistencia = {
             id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
             alumnoId: alumnoId,
@@ -23,17 +23,31 @@ export class CRMController {
             franja,
             estado: estado
         };
-
+        //Insercion en el almacen
         this.asistenciaStorage.add(nuevaAsistencia);
         return true;
     }
 
-    /**
+    /** 
      * Registra una sanción disciplinaria.
+     * No se si le debe añadir retraso pero para simular una red se lo añadire a la mayoria de funciones
      */
     public async registrarSancion(alumnoId: string, profesorId: string, tipo: TipoSancion, descripcion: string): Promise<void> {
-        // TODO: Implementar lógica de inserción asíncrona.
-        throw new Error('Método no implementado');
+        // Simulación de retardo de red (300 ms)
+        await new Promise((resolve) => setTimeout(resolve, 300));
+
+        //Construcción del objeto Sancion
+        const nuevaSancion: Sancion = {
+            id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+            alumnoId: alumnoId,
+            profesorId: profesorId,
+            fecha: new Date().toISOString().split('T')[0],
+            tipo: tipo,
+            descripcion: descripcion
+        };
+
+        //Inserción en el almacén persistente
+        this.sancionesStorage.add(nuevaSancion);
     }
 
     /**

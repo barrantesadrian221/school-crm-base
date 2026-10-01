@@ -1,3 +1,4 @@
+//interfaces
 export type RolUsuario = 'admin' | 'profesor' | 'alumno';
 export type EstadoAsistencia = 'presente' | 'falta' | 'retraso' | 'justificada';
 export type TipoSancion = 'comportamiento' | 'expulsion';
